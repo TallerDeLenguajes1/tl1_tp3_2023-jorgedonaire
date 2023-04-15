@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+
 int main(){
     char *V[5];
     char *nombre;
@@ -13,6 +14,7 @@ int main(){
         scanf("%s", nombre);
         V[i]=nombre;
     }
+
     printf("Los nombres ingresados son: \n");
     
     for (int j = 0; j < 5; j++)
@@ -20,6 +22,11 @@ int main(){
         printf("%s\n", V[j]);
     }
     
-    free(nombre);
+    //liberar memoria dinamica
+    for (int i = 0; i < 5; i++)
+    {
+        free(nombre);
+    }
+
     return 0;
 }
