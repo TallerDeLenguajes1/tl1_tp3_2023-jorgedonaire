@@ -2,48 +2,43 @@
 #include <string.h>
 #include <stdlib.h>
 
-struct nombre
-{
-    char *nombre;
-}typedef nombre;
-
-void cargarNombres(int cant, char * listadoNombres);
-void mostrarNombres(int cant, char *listadoNombres);
 
 int main(){
-    int cantidadNombres=0;
+    char **V;
+    char *nombre;
+    int cantidad;
 
     printf("Ingrese la cantidad de nombres: ");
-    scanf("%d", &cantidadNombres);
+    scanf("%d", &cantidad);
 
-    char *listadoNombres[];
-    listadoNombres=(char *)malloc(sizeof(char)*cantidadNombres);
+    //reserva dinamica para el vector
 
-    cargarNombres(cantidadNombres,listadoNombres);
-    mostrarNombres(cantidadNombres,listadoNombres);
+    V = (char **) malloc(sizeof(char *)*cantidad);
 
-    return 0;
-}
+    //carga de nombres
 
-void cargarNombres(int cant, char * listadoNombres){
-   
-    for (int i = 0; i < cant; i++)
+    for (int i = 0; i < cantidad; i++)
     {
-        nombre listadoNombres = (char *) malloc(sizeof(char) * 20);
+        nombre = (char *) malloc(sizeof(char) * 20);
         printf("Ingrese el nombre: ");
         scanf("%s", nombre);
-
-        listadoNombres=nombre;
-        listadoNombres++;
+        V[i]=nombre;
     }
-    free(nombre);
-}
 
-void mostrarNombres(int cant, char *listadoNombres){
     printf("Los nombres ingresados son: \n");
-    for (int j = 0; j < cant; j++)
+    
+    for (int j = 0; j < cantidad; j++)
     {
-        printf("%s\n", listadoNombres[j]);
+        printf("%s\n", V[j]);
     }
     
+    //liberar memoria dinamica
+    for (int i = 0; i < cantidad; i++)
+    {
+        free(nombre);
+    }
+    
+    free(V);
+
+    return 0;
 }
